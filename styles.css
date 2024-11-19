@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
 /* Transitions */
 :root {
+--body-color: #edd5bd;
+--sidebar-color: #eee8e3;
+--text-color: #333;
+--toggle-color: #c1966c;
+--hover-color:#c8a27d;
+
 --tran-02: all 0.2s ease;
 --tran-03: all 0.3s ease;
 --tran-04: all 0.4s ease;
@@ -16,13 +22,21 @@
 
 body{
     height: 100vh;
-    background: #edd5bd;
+    background: var(--body-color);
+    transition: var(--tran-02);
 }
 /* Resuable CSS*/
 .sidebar .text{
     font-size: 16px;
     font-weight: 500;
-    color: black;
+    color: var(--text-color);
+    transition: var(--tran-03);
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.sidebar.close .text{
+    opacity: 0;
 }
 
 .sidebar .image{
@@ -30,6 +44,15 @@ body{
     display: flex;
     align-items: center;
 }
+
+body.dark{
+--body-color: #373535;
+--sidebar-color: #000000;
+--text-color: #f3f0f0;
+--toggle-color: #9a9590;
+--hover-color: #62615f;
+}
+
 /* Sidebar*/
 
 .sidebar{
@@ -37,9 +60,14 @@ body{
     top: 0;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 280px;
     padding: 10px 14px;
-    background-color: #eee8e3;
+    background-color: var(--sidebar-color);
+    transition: var(--tran-05);
+}
+
+.sidebar.close{
+    width: 88px;
 }
 
 .sidebar li{
@@ -56,11 +84,11 @@ body{
     justify-content: center;
     min-width: 60px;
     font-size: 25px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .sidebar li .text{
-    color: #333;
+    color: var(--text-color);
     transition: var(--tran-02);
 }
 
@@ -93,18 +121,28 @@ header .image-text .header-text{
 
 .sidebar header .toggle{
     position: absolute;
-    top: 80%;
+    top: 100%;
     right: -25px;
-    transform: translateY(-50px);
+    transform: translateY(-50%);
     height: 25px;
     width: 25px;
-    background: #c1966c;
+    background: var(--toggle-color);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    color: #333;
+    color: var(--text-color);
     font-size: 22px;
+    transition: var(--tran-03);
+}
+
+.sidebar.close header.toggle{
+    transform: translateY(-50%) rotate(180deg);
+}
+
+body.dark .sidebar header.toggle{
+    transform: rotate(180deg);
+    color: var(--text-color);
 }
 
 .sidebar li a{
@@ -118,11 +156,17 @@ header .image-text .header-text{
 }
 
 .sidebar li a:hover{
-    background: #c8a27d;
+    background: var(--hover-color);
 }
 
-,.sidebar li a:hover .text{
-    color: #c1966c;
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: var(--hover-color);
+}
+
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text{
+    color: var(--text-color);
 }
 
 .sidebar .menu-bar{
@@ -133,7 +177,9 @@ header .image-text .header-text{
 }
 
 .menu-bar .mode{
-    background-color: #eee8e3;
+    position: relative;
+    background-color: var(--sidebar-color);
+    border-radius: 6px;
 }
 
 .menu-bar .mode .moon-sun{
@@ -141,6 +187,7 @@ header .image-text .header-text{
     width: 60px;
     display: flex;
     align-items: center;
+
 }
 
 .menu-bar .mode i{
@@ -152,12 +199,16 @@ header .image-text .header-text{
 }
 
 .menu-bar .mode .toggle-switch{
+    position: absolute;
+    right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
     min-width: 60px;
     cursor: pointer;
+    border-radius: 6px;
+    background: var(--body-color);
 }
 
 .toggle-switch .switch{
@@ -165,7 +216,7 @@ header .image-text .header-text{
     height: 22px;
     width: 44px;
     border-radius: 25px;
-    background: #c1966c;
+    background: var(--toggle-color);
 }
 
 .switch::before{
@@ -177,5 +228,10 @@ header .image-text .header-text{
     top: 50%;
     left: 5px;
     transform: translateY(-50%);
-    background: #edd5bd;
+    background: var(--body-color);
+    transition: var(--tran-03);
+}
+
+body.dark .switch::before{
+    left: 24px;
 }
