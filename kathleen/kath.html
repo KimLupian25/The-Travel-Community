@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kulturifiko</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #133E87;
+            background-color: #F3F3E0;
+            line-height: 1.6;
+            scroll-behavior: smooth; 
+        }
+
+        nav {
+            background-color: #608BC1; 
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+        nav .nav-links {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        nav .nav-links a {
+            text-decoration: none;
+            color: #F3F3E0;
+            font-size: 1.2rem;
+            margin: 0 25px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+        }
+        nav .nav-links a:hover {
+            background-color: #133E87;
+            color: #F3F3E0;
+        }
+        nav .nav-links a.active {
+            background-color: #133E87;
+            color: #F3F3E0;
+        }
+        nav .nav-links a i {
+            margin-right: 10px;
+        }
+
+        .cta-btn {
+            background-color: #F3F3E0;
+            color: #133E87;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+        .cta-btn:hover {
+            background-color: #608BC1;
+            color: #F3F3E0;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 15px;
+            background-color: #133E87;
+            color: #F3F3E0;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            animation: colorChange 2s infinite alternate;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        #about {
+            padding: 60px 20px;
+            background-color: #CBDCEB;
+            text-align: center;
+            margin-top: 40px;
+        }
+        #about h2 {
+            font-size: 2.8rem;
+            color: #133E87;
+        }
+
+        main {
+            padding: 30px 20px;
+        }
+
+        #features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background-color: #CBDCEB;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #133E87;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            color: #133E87;
+            font-size: 1.5rem;
+        }
+        .feature-card p {
+            color: #133E87;
+            font-weight: 300;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #608BC1;
+            color: #F3F3E0;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        #join-section {
+            background-color: #133E87;
+            color: #F3F3E0;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        #join-section h2 {
+            font-size: 2.5rem;
+        }
+        #join-section p {
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+        #join-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        #join-section input {
+            padding: 12px;
+            margin: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #CBDCEB;
+            font-size: 1rem;
+        }
+        #join-section input[type="submit"] {
+            background-color: #F3F3E0;
+            color: #133E87;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        #join-section input[type="submit"]:hover {
+            background-color: #608BC1;
+            color: #F3F3E0;
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #F3F3E0;
+            }
+            100% {
+                color: #608BC1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="#home" class="nav-link"><i class="fa fa-home"></i>Home</a>
+            <a href="#about" class="nav-link"><i class="fa fa-info-circle"></i>About</a>
+            <a href="#features" class="nav-link"><i class="fa fa-cogs"></i>Features</a>
+        </div>
+        <a href="#join-section" class="cta-btn">Join Now</a>
+    </nav>
+
+    <header id="home">
+        <h1>KULTURIFIKO!</h1>
+        <p>A Gateway to Cultural Immersion</p>
+    </header>
+
+    <section id="about">
+        <h2>About</h2>
+        <p>
+            Kulturifiko is a platform dedicated to connecting travelers with local cultures. Through gamified experiences, travelers can earn points as they explore, document their journeys, and share cultural insights with a global community. The platform provides access to a rich database of cultural knowledge and helps users engage with local communities to ensure respectful and immersive travel experiences. 
+            With the goal of promoting cultural appreciation, Kulturifiko encourages meaningful connections and fosters cross-cultural learning.
+        </p>
+    </section>
+
+    <main>
+        <section id="features">
+            <div class="feature-card">
+                <i class="fa fa-trophy"></i>
+                <h3>Gamified Experience</h3>
+                <p>Earn points as you travel and immerse in local cultures. Compete with other travelers!</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa fa-pen"></i>
+                <h3>Travel Journal</h3>
+                <p>Document your journey with our Blogging Platform. Share your cultural experiences with others.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa fa-database"></i>
+                <h3>Cultural Database</h3>
+                <p>Access a rich database of cultural insights from local communities around the world.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fa fa-users"></i>
+                <h3>Community Connection</h3>
+                <p>Engage with local communities to ensure your travel experience is immersive and respectful.</p>
+            </div>
+        </section>
+    </main>
+
+    <section id="join-section">
+        <h2>Join Our Community</h2>
+        <p>Ready to immerse yourself in new cultures? Join us today!</p>
+        <form>
+            <input type="text" placeholder="Enter your name" required>
+            <input type="email" placeholder="Enter your email" required>
+            <input type="submit" value="Join Now">
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2024 Kulturifiko. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelector('.cta-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#join-section').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
