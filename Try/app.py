@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Configure MongoDB URI (Replace this with your MongoDB URI if using MongoDB Atlas)
-app.config["MONGO_URI"] = "mongodb://localhost:27017/blogs"  # Change if using MongoDB Atlas
+app.config["mongodb+srv://kimberly_cumaling:choperangela25@cluster0.mongodb.net/travel"] = "mongodb://localhost:27017/blogs"  # Change if using MongoDB Atlas
 mongo = PyMongo(app)
 
 # Route to submit a blog
