@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kulturifiko</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+        font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+        background-color: #608BC1;
+        padding: 10px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        }
+
+        .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        }
+
+        .logo {
+        color: #fff;
+        font-size: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links li a{
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+        background-color: #133E87;
+        border-radius: 5px;
+        }
+
+        .menu-icon {
+        display: none;
+        cursor: pointer;
+        }
+
+        .menu-icon .bar {
+        width: 25px;
+        height: 4px;
+        background-color: #fff;
+        margin: 5px auto;
+        transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+        .nav-links {
+        display: none;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #333;
+        padding: 20px 0;
+    }
+
+        .nav-links.active {
+        display: block;
+    }
+
+        .nav-links li {
+        margin: 15px 0;
+    }
+
+        .menu-icon {
+        display: block;
+    }
+    }
+
+    .blog-submission {
+    background-color: #f4f4f9;
+    padding: 40px 20px;
+    margin: 50px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.input-group button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.input-group button:hover {
+    background-color: #45a049;
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">Kulturifiko!</a>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#">Leaderboard</a></li>
+                <li><a href="#">Cultural Database</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+            <div class="menu-icon" id="menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="blog-submission">
+        <div class="container">
+            <h2>Share with us</h2>
+            <form id="blog-form">
+                <div class="input-group">
+                    <label for="blog-title">Blog Title</label>
+                    <input type="text" id="blog-title" name=" title" placeholder="Enter your blog title" required>
+                </div>
+                <div class="input-group">
+                    <label for="blog-content">Blog Content</label>
+                    <textarea name="content" id="blog-content" placeholder="Write your blog content here..." rows="5" required></textarea>
+                </div>
+                <div class="input-group">
+                    <button type="submit">Submit Blog</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script>
+        const menuIcon = document.getElementById("menu-icon");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuIcon.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+
+        document.getElementById('blog-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const title = document.getElementById('blog-title').value;
+        const content = document.getElementById('blog-content').value;
+
+        if (title && content) {
+            // Send form data to the backend using Fetch API
+            fetch('http://localhost:5000/submit-blog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, content })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message); // Show success message
+                } else {
+                    alert(data.error); // Show error message
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('An error occurred while submitting your blog.');
+            });
+
+            // Reset the form after submission
+            this.reset();
+        } else {
+            alert('Please fill in both the title and content.');
+        }
+    });
+    </script>
+</body>
