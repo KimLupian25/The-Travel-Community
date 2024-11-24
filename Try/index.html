@@ -127,5 +127,40 @@
         menuIcon.addEventListener("click", () => {
             navLinks.classList.toggle("active");
         });
+
+        document.getElementById('blog-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const title = document.getElementById('blog-title').value;
+        const content = document.getElementById('blog-content').value;
+
+        if (title && content) {
+            // Send form data to the backend using Fetch API
+            fetch('http://localhost:5000/submit-blog', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, content })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message); // Show success message
+                } else {
+                    alert(data.error); // Show error message
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('An error occurred while submitting your blog.');
+            });
+
+            // Reset the form after submission
+            this.reset();
+        } else {
+            alert('Please fill in both the title and content.');
+        }
+    });
     </script>
 </body>
